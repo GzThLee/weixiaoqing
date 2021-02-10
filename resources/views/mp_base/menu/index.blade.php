@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css')}}" media="all">
 @endsection
 @section('content')
+    @if(session('warning_tip'))
+        @include('mp_common.warning_tip')
+    @endif
     <form class="layui-form" action="{{ route('mp.base.menus.update') }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('put') }}

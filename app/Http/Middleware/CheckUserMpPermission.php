@@ -23,7 +23,8 @@ class CheckUserMpPermission
         if ($request->user()->mp->permissions->where('name', $permissionName)->first()) {
             return $next($request);
         } else {
-            return Response::view('error', ['message' => '抱歉！您的公众号没有此功能权限']);
+            session()->flash('warning_tip', '😢 抱歉！您的公众号的配置有误，此功能可能不太行喔~');
+            return $next($request);
         }
     }
 }

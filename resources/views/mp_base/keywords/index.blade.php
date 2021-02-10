@@ -3,6 +3,9 @@
 @section('title','关键字回复列表')
 
 @section('content')
+    @if(session('warning_tip'))
+        @include('mp_common.warning_tip')
+    @endif
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
         <form class="layui-form layui-form-pane" action="">

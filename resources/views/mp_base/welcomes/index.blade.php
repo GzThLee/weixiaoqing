@@ -3,6 +3,9 @@
 @section('title','关注欢迎语设置')
 
 @section('content')
+    @if(session('warning_tip'))
+        @include('mp_common.warning_tip')
+    @endif
     <fieldset class="layui-elem-field layui-field-title">
         <legend>关注欢迎语设置</legend>
     </fieldset>
