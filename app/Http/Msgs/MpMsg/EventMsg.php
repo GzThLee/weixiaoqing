@@ -99,10 +99,10 @@ class EventMsg extends MpBaseMsg
                 $fan = $mpService->subscribe($openId, MpFan::SCAN_SUBSCRIBE);
             } else if ($event == 'SCAN') {
                 $scanType = MpFan::SCAN_SUBSCRIBED; //旧用户
-                $fan = MpFan::firstOrCreate(['openid' => $openId, 'mp_id' => $this->mp]);
+                $fan = MpFan::firstOrCreate(['openid' => $openId, 'mp_id' => $this->mp->mp_id]);
             } else {
                 $scanType = MpFan::SCAN_UNDEFINED;
-                $fan = MpFan::firstOrCreate(['openid' => $openId, 'mp_id' => $this->mp]);
+                $fan = MpFan::firstOrCreate(['openid' => $openId, 'mp_id' => $this->mp->mp_id]);
             }
 
             if (Str::contains($sceneStr, 'MP_')) {
