@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Sync;
 
 use App\Models\Mp;
+use App\Models\MpKeyword;
 use App\Models\MpMenu;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,15 @@ class MpMenus extends Command
                     'click' => MpMenu::KEYWORD_MENU,
                     'view' => MpMenu::LINK_MENU,
                     'miniprogram' => MpMenu::MINI_APP_MENU,
+                    'scancode_push' => MpMenu::SCANCODE_PUSH_MENU,
+                    'scancode_waitmsg' => MpMenu::SCANCODE_WAITMSG_MENU,
+                    'pic_sysphoto' => MpMenu::PIC_SYSPHOTO_MENU,
+                    'pic_photo_or_album' => MpMenu::PIC_PHOTO_OR_ALBUM_MENU,
+                    'pic_weixin' => MpMenu::PIC_WEIXIN_MENU,
+                    'location_select' => MpMenu::LOCATION_SELECT_MENU,
+                    'media_id' => MpMenu::MEDIA_ID_MENU,
+                    'view_limited' => MpMenu::VIEW_LIMITED_MENU,
+                    'text' => MpMenu::TEXT_MENU,
                 ];
 
                 $menuData = $app->menu->current();
@@ -76,6 +86,20 @@ class MpMenus extends Command
 
                         //子菜单列表
                         foreach ($menuItem['sub_button']['list'] as $key => $menuSubItem) {
+                            if ($menuTypeList[$menuSubItem['type']] == MpMenu::TEXT_MENU) {
+                                //菜单文本回复改成关键字回复
+                                MpKeyword::updateOrCreate([
+                                    'mp_id' => $mp->mp_id,
+                                    'keyword' => $menuSubItem['name'],
+                                    'm_tag_id' => 0,
+                                    'rule_type' => MpKeyword::EXACT,
+                                    'media_type' => Mp::TEXT_MEDIA,
+                                ], [
+                                    'status' => 1,
+                                    'content' => ['content' => $menuSubItem['value']],
+                                ]);
+                            }
+
                             MpMenu::updateOrCreate([
                                 'mp_id' => $mp->mp_id,
                                 'pindex' => $index,
@@ -88,6 +112,20 @@ class MpMenus extends Command
                         }
 
                     } else {
+                        if ($menuTypeList[$menuItem['type']] == MpMenu::TEXT_MENU) {
+                            //菜单文本回复改成关键字回复
+                            MpKeyword::updateOrCreate([
+                                'mp_id' => $mp->mp_id,
+                                'keyword' => $menuItem['name'],
+                                'm_tag_id' => 0,
+                                'rule_type' => MpKeyword::EXACT,
+                                'media_type' => Mp::TEXT_MEDIA,
+                            ], [
+                                'status' => 1,
+                                'content' => ['content' => $menuItem['value']],
+                            ]);
+                        }
+
                         //无菜单
                         MpMenu::updateOrCreate([
                             'mp_id' => $mp->mp_id,

@@ -29,6 +29,15 @@ class MpMenu extends Model
     const KEYWORD_MENU = 3;
     const EVENT_MENU = 4;
     const MINI_APP_MENU = 5;
+    const SCANCODE_PUSH_MENU = 6;
+    const SCANCODE_WAITMSG_MENU = 7;
+    const PIC_SYSPHOTO_MENU = 8;
+    const PIC_PHOTO_OR_ALBUM_MENU = 9;
+    const PIC_WEIXIN_MENU = 10;
+    const LOCATION_SELECT_MENU = 11;
+    const MEDIA_ID_MENU = 12;
+    const VIEW_LIMITED_MENU = 13;
+    const TEXT_MENU = 14;
 
     protected static function boot()
     {
