@@ -18,10 +18,18 @@ class MpFan extends Model
 
     protected $attributes = [
         'unionid' => '',
+        'nickname' => '',
+        'remark' => '',
+        'city' => '',
+        'province' => '',
+        'country' => '',
+        'language' => '',
+        'sex' => 0,
+        'headimgurl' => '',
+        'subscribe_type' => 0,
         'subscribe_scene' => '',
         'qr_scene' => '',
         'qr_scene_str' => '',
-        'remark' => ''
     ];
 
     protected $appends = ['subscribe_scene_text', 'sex_text'];
