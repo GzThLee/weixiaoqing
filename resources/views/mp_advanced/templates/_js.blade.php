@@ -39,7 +39,7 @@
             layer.open({
                 type: 2
                 , title: '请选择用户'
-                , area: ['800px', '600px']
+                , area: ['800px', '400px']
                 , offset: 'auto'
                 , maxmin: true
                 , id: 'select-user-panel'
