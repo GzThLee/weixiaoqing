@@ -21,6 +21,7 @@ class MpController extends Controller
      */
     public function serveHandler(string $api_token, Request $request)
     {
+        $echoStr = $request->input('echostr', '');  //服务器对接
         try {
             $mp = Mp::where('api_token', $api_token)->first();
             $openid = $request->input('openid', '');
@@ -46,7 +47,7 @@ class MpController extends Controller
             $response = $app->server->serve();
         } catch (\Exception $exception) {
             mark_error_log($exception);
-            $response = MpService::DEFAULT_RETURN;
+            $response = $echoStr != '' ? $echoStr : MpService::DEFAULT_RETURN;
         }
         return $response;
     }

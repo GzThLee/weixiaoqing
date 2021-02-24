@@ -85,10 +85,8 @@ DB_PASSWORD=
 - [Laravel 项目开发规范](https://learnku.com/docs/laravel-specification/7.x)
 - [PHP PSR标准](https://www.php-fig.org/psr/)
 
-## 定制使用
-- 直接使用：进入 [微小擎](http://www.weixiaoqing.com/) 注册登录即可，不收费
-- 定制：加我QQ361755806
-
-
-
-[www.weixiaoqing.com]: www.weixiaoqing.com
+## 疑问&帮助
+- 如果你觉得项目不错，希望你可以给我的项目点个⭐️
+- 如需协助加我QQ：361755806
+- ↓扫码领券点外卖↓，每一份外卖都是给我的支持，🙇🏻谢谢您
+![brand](public/brand.png)
