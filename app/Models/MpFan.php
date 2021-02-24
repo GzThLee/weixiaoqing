@@ -21,6 +21,7 @@ class MpFan extends Model
         'subscribe_scene' => '',
         'qr_scene' => '',
         'qr_scene_str' => '',
+        'remark' => ''
     ];
 
     protected $appends = ['subscribe_scene_text', 'sex_text'];
