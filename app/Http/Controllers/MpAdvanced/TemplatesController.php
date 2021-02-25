@@ -62,14 +62,18 @@ class TemplatesController extends Controller
     {
         /** @var Users $mp */
         $mp = Auth::user()->mp;
-        if (Cache::has("{$mp->mp_id}_temp_list")) {
-            $tempListOutput = Cache::get("{$mp->mp_id}_temp_list");
-            $templates = $tempListOutput['template_list'] ?? '';
-        } else {
-            $app = mp_app($mp->app_id, $mp->app_secret);
-            $tempListOutput = $app->template_message->getPrivateTemplates();
-            $templates = $tempListOutput['template_list'] ?? '';
-            Cache::put("{$mp->mp_id}_temp_list", $tempListOutput, 10);
+        try {
+            if (Cache::has("{$mp->mp_id}_temp_list")) {
+                $tempListOutput = Cache::get("{$mp->mp_id}_temp_list");
+                $templates = $tempListOutput['template_list'] ?? [];
+            } else {
+                $app = mp_app($mp->app_id, $mp->app_secret);
+                $tempListOutput = $app->template_message->getPrivateTemplates();
+                $templates = $tempListOutput['template_list'] ?? [];
+                Cache::put("{$mp->mp_id}_temp_list", $tempListOutput, 10);
+            }
+        } catch (\Exception $exception) {
+            $templates = [];
         }
 
         $tags = MpTag::pluck('name', 'm_tag_id');
