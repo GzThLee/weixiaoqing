@@ -60,7 +60,7 @@ class TemplatesController extends Controller
      */
     public function createGet(Request $request)
     {
-        /** @var Users $mp */
+        /** @var Mp $mp */
         $mp = Auth::user()->mp;
         try {
             if (Cache::has("{$mp->mp_id}_temp_list")) {
