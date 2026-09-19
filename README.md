@@ -61,7 +61,7 @@ DB_PASSWORD=
 - 创建默认数据:```php artisan db:seed```
 - 创建符号链接:```php artisan storage:link```
 - 打开定时器:```crontab -e```
-- 添加调度器:```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
+- 添加调度器（调度日志在 storage/logs/schedule 目录）:```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```
 - 安装配置supervisor队列监听
     - centos:```yum install supervisor```
     - ubuntu:```sudo apt-get install supervisor```
